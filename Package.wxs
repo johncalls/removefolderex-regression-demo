@@ -1,0 +1,19 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <Package Name="rmfex_regression_demo" Manufacturer="TODO Manufacturer" Version="1.0.0.0" UpgradeCode="8243e9e9-5e68-43f3-8d31-ab96d246bcf2">
+    <MajorUpgrade DowngradeErrorMessage="Downgrade not permitted" />
+
+    <Property Id="APPLICATIONFOLDER_PROP">
+      <RegistrySearch Key="SOFTWARE\rmfex-regression-demo" Root="HKLM" Type="raw" Id="APPLICATIONFOLDER_REGSEARCH" Name="Path" />
+    </Property>
+    <Property Id="APPLICATIONFOLDER" Value="C:\rmfex-regression-demo" />
+
+    <Feature Id="Main">
+      <ComponentRef Id="FolderRemoval" />
+    </Feature>
+
+    <Component Id="FolderRemoval" Guid="3A6F7EC9-13A5-43A5-A975-859EDDBDD109" Directory="TARGETDIR">
+      <RegistryValue Root="HKLM" Key="SOFTWARE\rmfex-regression-demo" Name="Path" Type="string" Value="[APPLICATIONFOLDER]" KeyPath="yes" />
+      <util:RemoveFolderEx On="uninstall" Property="APPLICATIONFOLDER_PROP" />
+    </Component>
+  </Package>
+</Wix>
