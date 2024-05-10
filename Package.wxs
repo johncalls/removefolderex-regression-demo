@@ -14,6 +14,13 @@
     <Component Id="FolderRemoval" Guid="3A6F7EC9-13A5-43A5-A975-859EDDBDD109" Directory="TARGETDIR">
       <RegistryValue Root="HKLM" Key="SOFTWARE\rmfex-regression-demo" Name="Path" Type="string" Value="[APPLICATIONFOLDER]" KeyPath="yes" />
       <util:RemoveFolderEx On="uninstall" Property="APPLICATIONFOLDER_PROP" />
+      <RemoveFolder Directory="INSTALLFOLDER" On="uninstall" />
     </Component>
   </Package>
+
+  <Fragment>
+    <StandardDirectory Id="TARGETDIR">
+      <Directory Id="INSTALLFOLDER" Name="rmfex-regression-demo" />
+    </StandardDirectory>
+  </Fragment>
 </Wix>
